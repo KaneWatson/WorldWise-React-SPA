@@ -51,6 +51,8 @@ function CitiesProvider({ children }) {
   }, [])
 
   async function getCity(id) {
+    if (currentCity.id === Number(id)) return
+
     try {
       dispatch({ type: "loading" })
       const res = await fetch(`${BASE_URL}/cities/${id}`)
@@ -98,7 +100,7 @@ function CitiesProvider({ children }) {
 
 function useCities() {
   const context = useContext(CitiesContext)
-  if (context === undefined) throw new Error("CitiesContext was used outside of the post provider.")
+  if (context === undefined) throw new Error("CitiesContext was used outside of the CitiesProvider.")
   return context
 }
 
