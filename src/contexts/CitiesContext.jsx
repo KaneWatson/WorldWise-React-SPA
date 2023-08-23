@@ -23,9 +23,9 @@ function reducer(state, action) {
     case "city/loaded":
       return { ...state, currentCity: action.payload }
     case "city/created":
-      return { ...state, cities: [...state.cities, action.payload] }
+      return { ...state, cities: [...state.cities, action.payload], currentCity: action.payload }
     case "city/deleted":
-      return { ...state, cities: state.cities.filter(city => city.id !== action.payload) }
+      return { ...state, cities: state.cities.filter(city => city.id !== action.payload), currentCity: initialState.currentCity }
   }
 }
 
