@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react"
+import { createContext, useContext, useEffect, useReducer } from "react"
 
 const BASE_URL = "http://localhost:8000"
 
@@ -31,7 +31,6 @@ function reducer(state, action) {
 
 function CitiesProvider({ children }) {
   const [{ cities, isLoading, currentCity }, dispatch] = useReducer(reducer, initialState)
-  console.log(cities)
 
   useEffect(function () {
     async function getCities() {
@@ -57,7 +56,7 @@ function CitiesProvider({ children }) {
       const res = await fetch(`${BASE_URL}/cities/${id}`)
       const data = await res.json()
       if (!data) throw new Error("Something went wrong. Please try again later.")
-      dispatch({ type: "city/loaded" })
+      dispatch({ type: "city/loaded", payload: data })
     } catch (error) {
       console.log(error.message)
     } finally {
@@ -71,8 +70,6 @@ function CitiesProvider({ children }) {
       const res = await fetch(`${BASE_URL}/cities/`, { method: "POST", body: JSON.stringify(newCity), headers: { "Content-Type": "application/json" } })
       const data = await res.json()
       if (!data) throw new Error("There was an error creating city.")
-      console.log(data)
-
       dispatch({ type: "city/created", payload: data })
     } catch (error) {
       console.log(error.message)

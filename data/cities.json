@@ -35,6 +35,42 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Almaden de la Plata",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-08-23T04:13:02.250Z",
+      "notes": "",
+      "position": {
+        "lat": "37.84127881588398",
+        "lng": "-5.998535156250001"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Rosinos de la Requejada",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-08-23T04:34:38.697Z",
+      "notes": "",
+      "position": {
+        "lat": "42.09822241118974",
+        "lng": "-6.525878906250001"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Olmedo de Camaces",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-08-23T04:36:39.263Z",
+      "notes": "",
+      "position": {
+        "lat": "40.81380923056961",
+        "lng": "-6.481933593750001"
+      },
+      "id": 98443200
     }
   ]
 }
