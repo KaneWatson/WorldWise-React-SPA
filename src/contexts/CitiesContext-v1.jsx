@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useReducer } from "react"
-import { getCities as getCitiesAPI, getCity as getCityAPI, createCity as createCityAPI, deleteCity as deleteCityAPI } from "../services/apiCities"
+
+const BASE_URL = "http://localhost:8000"
 
 const CitiesContext = createContext()
 
@@ -35,9 +36,8 @@ function CitiesProvider({ children }) {
     async function getCities() {
       try {
         dispatch({ type: "loading" })
-
-        const data = await getCitiesAPI()
-        console.log(data)
+        const res = await fetch(`${BASE_URL}/cities`)
+        const data = await res.json()
         if (!data) throw new Error("Something went wrong. Please try again later.")
         // setCities(data)
         dispatch({ type: "cities/loaded", payload: data })
@@ -56,8 +56,8 @@ function CitiesProvider({ children }) {
 
       try {
         dispatch({ type: "loading" })
-
-        const data = await getCityAPI(id)
+        const res = await fetch(`${BASE_URL}/cities/${id}`)
+        const data = await res.json()
         if (!data) throw new Error("Something went wrong. Please try again later.")
         dispatch({ type: "city/loaded", payload: data })
       } catch (error) {
@@ -72,8 +72,8 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     try {
       dispatch({ type: "loading" })
-
-      const data = await createCityAPI(newCity)
+      const res = await fetch(`${BASE_URL}/cities/`, { method: "POST", body: JSON.stringify(newCity), headers: { "Content-Type": "application/json" } })
+      const data = await res.json()
       if (!data) throw new Error("There was an error creating city.")
       dispatch({ type: "city/created", payload: data })
     } catch (error) {
@@ -87,7 +87,7 @@ function CitiesProvider({ children }) {
       try {
         dispatch({ type: "loading" })
         if (!id) throw new Error("There was an error deleting city.")
-        await deleteCityAPI(id)
+        await fetch(`${BASE_URL}/cities/${id}`, { method: "DELETE" })
 
         dispatch({ type: "city/deleted", payload: id })
       } catch (error) {
