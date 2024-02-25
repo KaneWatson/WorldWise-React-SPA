@@ -1,12 +1,12 @@
+import styles from "./Sidebar.module.css"
 import { Outlet } from "react-router-dom"
 import AppNav from "./AppNav"
 import Footer from "./Footer"
 import Logo from "./Logo"
-// import styles from "./SideBar.module.css"
 
 function Sidebar() {
   return (
-    <div className={"test"}>
+    <div className={styles.sidebar}>
       <Logo />
       <AppNav />
       <Outlet />
